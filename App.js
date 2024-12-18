@@ -1,46 +1,32 @@
-import Animated, {
-  useSharedValue,
-  withTiming,
-  useAnimatedStyle,
-  Easing,
-} from "react-native-reanimated";
-import { View, Button } from "react-native";
+import { createNavigationContainerRef, NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import React, { useState } from 'react';
+import {
+  StyleSheet,
+  SafeAreaView,
+  View,
+  Image,
+  Text,
+  TouchableOpacity,
+  TextInput,
+} from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { HeaderShownContext } from '@react-navigation/elements';
+import loginScreen from './screens/loginScreen';
+import registerScreen from './screens/registerScreen'
+import homescreen from './screens/welcomeScreen'
 
-export default function AnimatedStyleUpdateExample(props) {
-  const randomWidth = useSharedValue(10);
 
-  const config = {
-    duration: 500,
-    easing: Easing.bezier(0.5, 0.01, 0, 1),
-  };
+const Stack = createStackNavigator();
 
-  const style = useAnimatedStyle(() => {
-    return {
-      width: withTiming(randomWidth.value, config),
-    };
-  });
-
+export default function Example() {
   return (
-    <View
-      style={{
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
-        flexDirection: "column",
-      }}
-    >
-      <Animated.View
-        style={[
-          { width: 100, height: 80, backgroundColor: "black", margin: 30 },
-          style,
-        ]}
-      />
-      <Button
-        title="toggle"
-        onPress={() => {
-          randomWidth.value = Math.random() * 350;
-        }}
-      />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName='login' screenOptions={{headerShown: false}}>
+        <Stack.Screen name='login' component={loginScreen} />
+        <Stack.Screen name='register' component={registerScreen} />
+        <Stack.Screen name='Home' component={homescreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }

@@ -1,4 +1,24 @@
 {
   "name": "login",
-  "slug": "login"
+  "slug": "login",
+  "extra": {
+    "eas": {
+      "projectId": "3e4e5033-17a9-4b34-8460-50236b0c5295"
+    }
+  },
+  "expo": {
+    "android": {
+      "package": "com.stefanus2763.login"
+    },
+    "splash": {
+      "image": "./assets/hero1.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "3e4e5033-17a9-4b34-8460-50236b0c5295"
+      }
+    }
+  }
 }
